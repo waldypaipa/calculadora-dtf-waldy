@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Waldy Uniformes | Cotizador DTF</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                waldyOrange: '#F97316',
+                waldyOrangeDark: '#EA580C',
+                waldyGreen: '#15803D',
+                waldyGreenDark: '#166534',
+                waldyGreenLight: '#DCFCE7'
+            }
+        }
+    }
+}
+</script>
+
+<style>
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+input,
+select,
+button {
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    box-shadow: 0 0 0 3px rgba(249,115,22,.15);
+}
+
+.gradient-header {
+    background:
+        radial-gradient(circle at top right, rgba(249,115,22,.35), transparent 35%),
+        linear-gradient(135deg, #166534, #15803D 55%, #16A34A);
+}
+
+.gradient-total {
+    background:
+        linear-gradient(135deg, #15803D, #166534);
+}
+
+.orange-gradient {
+    background:
+        linear-gradient(135deg, #F97316, #EA580C);
+}
+
+.card-shadow {
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, .08);
+}
+
+.soft-shadow {
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, .06);
+}
+
+.hidden {
+    display: none !important;
+}
+
+</style>
+
+</head>
+
+
+<body class="bg-slate-100 text-slate-800 min-h-screen">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="gradient-header text-white">
+
+<div class="max-w-7xl mx-auto px-5 py-6">
+
+<div class="flex flex-col md:flex-row md:items-center
+            md:justify-between gap-5">
+
+<div class="flex items-center gap-4">
+
+<!-- LOGO SIMBÓLICO -->
+
+<div class="w-14 h-14 rounded-2xl bg-white
+            flex items-center justify-center
+            shadow-lg">
+
+<span class="text-3xl font-black text-green-700">
+    W
+</span>
+
+</div>
+
+
+<div>
+
+<div class="text-orange-300 text-xs
+            uppercase tracking-[.25em] font-bold">
+
+WALDY UNIFORMES
+
+</div>
+
+<h1 class="text-2xl sm:text-3xl
+           font-black tracking-tight">
+
+Cotizador DTF
+
+</h1>
+
+<p class="text-green-100 text-sm mt-1">
+
+Calcula costos y precios de venta
+en segundos
+
+</p>
+
+</div>
+
+</div>
+
+
+<button
+onclick="mostrarConfiguracion()"
+class="flex items-center justify-center gap-2
+       bg-white/10 hover:bg-white/20
+       border border-white/20
+       backdrop-blur px-5 py-3 rounded-xl
+       font-semibold transition">
+
+⚙️ Configuración
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+<div class="grid xl:grid-cols-3 gap-7">
+
+
+<!-- =====================================================
+     FORMULARIO
+===================================================== -->
+
+<section class="xl:col-span-2">
+
+
+<div class="bg-white rounded-3xl card-shadow
+            border border-slate-200 overflow-hidden">
+
+
+<!-- CABECERA FORMULARIO -->
+
+<div class="px-6 sm:px-8 py-6
+            border-b border-slate-100">
+
+<div class="flex items-center gap-3">
+
+<div class="w-10 h-10 rounded-xl
+            orange-gradient text-white
+            flex items-center justify-center
+            font-bold">
+
+01
+
+</div>
+
+<div>
+
+<h2 class="font-extrabold text-lg">
+Datos de la cotización
+</h2>
+
+<p class="text-sm text-slate-500">
+Ingresa las características del pedido
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FORM -->
+
+<div class="p-6 sm:p-8">
+
+
+<!-- PRODUCTO -->
+
+<div class="mb-6">
+
+<label class="block text-sm font-bold
+              text-slate-700 mb-2">
+
+Tipo de producto
+
+</label>
+
+
+<select
+id="tipoProducto"
+onchange="actualizarInterfaz()"
+class="w-full bg-slate-50 border border-slate-200
+       p-3.5 rounded-xl
+       font-medium text-slate-700
+       transition">
+
+<option value="dtf">
+Solo estampado DTF
+</option>
+
+<option value="algodon">
+Camiseta algodón + DTF
+</option>
+
+<option value="piel">
+Camiseta piel de durazno + DTF
+</option>
+
+</select>
+
+</div>
+
+
+
+<!-- AREA -->
+
+<div class="mb-6">
+
+<label class="block text-sm font-bold
+              text-slate-700 mb-2">
+
+Área del estampado
+
+</label>
+
+
+<select
+id="areaDtf"
+onchange="actualizarInterfaz()"
+class="w-full bg-slate-50 border border-slate-200
+       p-3.5 rounded-xl font-medium">
+
+<option value="10x10">
+10 × 10 cm
+</option>
+
+<option value="mediaCarta">
+Media carta
+</option>
+
+<option value="carta">
+Carta
+</option>
+
+<option value="full">
+Full / Pecho completo
+</option>
+
+<option value="personalizado">
+Tamaño personalizado
+</option>
+
+</select>
+
+</div>
+
+
+
+<!-- PERSONALIZADO -->
+
+<div
+id="personalizadoContainer"
+class="hidden grid grid-cols-2 gap-4 mb-6">
+
+<div>
+
+<label class="block text-sm font-bold mb-2">
+Ancho (cm)
+</label>
+
+<input
+id="anchoPersonalizado"
+type="number"
+min="1"
+step=".1"
+value="20"
+class="w-full bg-slate-50
+       border border-slate-200
+       p-3.5 rounded-xl">
+
+</div>
+
+
+<div>
+
+<label class="block text-sm font-bold mb-2">
+Alto (cm)
+</label>
+
+<input
+id="altoPersonalizado"
+type="number"
+min="1"
+step=".1"
+value="25"
+class="w-full bg-slate-50
+       border border-slate-200
+       p-3.5 rounded-xl">
+
+</div>
+
+</div>
+
+
+
+<!-- CANTIDAD -->
+
+<div class="mb-6">
+
+<label class="block text-sm font-bold
+              text-slate-700 mb-2">
+
+Cantidad de unidades
+
+</label>
+
+<div class="relative">
+
+<input
+id="cantidad"
+type="number"
+min="1"
+value="1"
+oninput="actualizarInterfaz()"
+class="w-full bg-slate-50
+       border border-slate-200
+       p-4 rounded-xl text-lg font-bold">
+
+<span
+class="absolute right-4 top-1/2
+       -translate-y-1/2
+       text-xs font-bold text-slate-400">
+
+UNIDADES
+
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- METROS -->
+
+<div class="mb-7">
+
+<label class="block text-sm font-bold
+              text-slate-700 mb-2">
+
+Metros DTF del pedido
+
+</label>
+
+<input
+id="metrosPedido"
+type="number"
+min=".1"
+step=".1"
+value="1"
+class="w-full bg-slate-50
+       border border-slate-200
+       p-3.5 rounded-xl">
+
+<p class="text-xs text-slate-500 mt-2">
+
+El envío de $12.500 se distribuirá
+entre los metros de este pedido.
+
+</p>
+
+</div>
+
+
+
+<!-- AVISO CAMISETA -->
+
+<div
+id="avisoCamiseta"
+class="hidden mb-6 bg-orange-50
+       border border-orange-100
+       rounded-2xl p-4">
+
+<div class="flex gap-3">
+
+<div class="text-xl">
+💡
+</div>
+
+<div>
+
+<div class="font-bold text-orange-800">
+Precio especial por cantidad
+</div>
+
+<div
+id="textoCamiseta"
+class="text-sm text-orange-700 mt-1">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- BOTON -->
+
+<button
+onclick="calcularCotizacion()"
+class="w-full orange-gradient
+       hover:opacity-95
+       text-white py-4 rounded-xl
+       font-extrabold text-base
+       shadow-lg shadow-orange-200
+       transition transform
+       hover:-translate-y-0.5">
+
+🧮 CALCULAR COTIZACIÓN
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULTADO
+===================================================== -->
+
+<div
+id="resultado"
+class="hidden bg-white rounded-3xl
+       card-shadow border border-slate-200
+       mt-7 overflow-hidden">
+
+
+<!-- RESULTADO HEADER -->
+
+<div class="bg-slate-900 text-white
+            px-6 sm:px-8 py-6">
+
+<div class="flex items-center gap-3">
+
+<div class="w-10 h-10 rounded-xl
+            bg-green-500
+            flex items-center justify-center">
+
+✓
+
+</div>
+
+<div>
+
+<h2 class="font-extrabold text-lg">
+Cotización calculada
+</h2>
+
+<p class="text-slate-400 text-sm">
+Resumen de costos y precio de venta
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="p-6 sm:p-8">
+
+
+<!-- RESUMEN -->
+
+<div class="grid sm:grid-cols-2 gap-4 mb-7">
+
+<div class="bg-slate-50 rounded-2xl p-4">
+
+<div class="text-xs uppercase
+            tracking-wider text-slate-400
+            font-bold">
+
+Producto
+
+</div>
+
+<div
+id="resultadoProducto"
+class="font-bold text-slate-800 mt-1">
+</div>
+
+</div>
+
+
+<div class="bg-slate-50 rounded-2xl p-4">
+
+<div class="text-xs uppercase
+            tracking-wider text-slate-400
+            font-bold">
+
+Cantidad
+
+</div>
+
+<div
+id="resultadoCantidad"
+class="font-bold text-slate-800 mt-1">
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- COSTOS -->
+
+<div class="mb-7">
+
+<h3 class="font-extrabold mb-4">
+Desglose del costo
+</h3>
+
+
+<div class="space-y-3 text-sm">
+
+
+<div class="flex justify-between
+            py-2 border-b border-slate-100">
+
+<span class="text-slate-500">
+Consumo DTF
+</span>
+
+<strong id="resultadoMetros">
+</strong>
+
+</div>
+
+
+<div class="flex justify-between
+            py-2 border-b border-slate-100">
+
+<span class="text-slate-500">
+Costo del DTF
+</span>
+
+<strong id="resultadoCostoDtf">
+</strong>
+
+</div>
+
+
+<div class="flex justify-between
+            py-2 border-b border-slate-100">
+
+<span class="text-slate-500">
+Envío DTF
+</span>
+
+<strong id="resultadoEnvio">
+</strong>
+
+</div>
+
+
+<div class="flex justify-between
+            py-2 border-b border-slate-100">
+
+<span class="text-slate-500">
+Energía proporcional
+</span>
+
+<strong id="resultadoEnergia">
+</strong>
+
+</div>
+
+
+<div
+id="filaCamiseta"
+class="flex justify-between
+       py-2 border-b border-slate-100">
+
+<span class="text-slate-500">
+Camiseta
+</span>
+
+<strong id="resultadoCamiseta">
+</strong>
+
+</div>
+
+
+<div class="flex justify-between
+            py-3 text-base">
+
+<span class="font-bold">
+Costo real unitario
+</span>
+
+<strong
+id="resultadoCostoUnitario"
+class="text-green-700">
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- PRECIO -->
+
+<div
+class="rounded-2xl
+       border border-green-100
+       bg-green-50 p-5 mb-4">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<div class="text-xs uppercase
+            tracking-wide
+            font-bold text-green-700">
+
+Precio unitario
+
+</div>
+
+<div class="text-xs text-green-600 mt-1">
+Antes del descuento
+</div>
+
+</div>
+
+<strong
+id="resultadoPrecioAntes"
+class="text-xl text-green-700">
+</strong>
+
+</div>
+
+</div>
+
+
+
+<!-- DESCUENTO -->
+
+<div
+class="rounded-2xl
+       border border-orange-100
+       bg-orange-50 p-5 mb-6">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<div class="text-xs uppercase
+            tracking-wide
+            font-bold text-orange-700">
+
+Descuento por cantidad
+
+</div>
+
+<div
+id="resultadoDescuentoTexto"
+class="text-xs text-orange-600 mt-1">
+</div>
+
+</div>
+
+<strong
+id="resultadoDescuento"
+class="text-xl text-orange-700">
+</strong>
+
+</div>
+
+</div>
+
+
+
+<!-- TOTAL -->
+
+<div
+class="gradient-total
+       text-white rounded-2xl p-6">
+
+<div class="flex justify-between
+            items-end gap-4">
+
+<div>
+
+<div class="text-xs uppercase
+            tracking-widest
+            text-green-200 font-bold">
+
+Total a cobrar
+
+</div>
+
+<div class="text-sm text-green-100 mt-1">
+Precio final del pedido
+</div>
+
+</div>
+
+<div
+id="resultadoTotal"
+class="text-2xl sm:text-3xl
+       font-black whitespace-nowrap">
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- AHORRO -->
+
+<div
+id="ahorroContainer"
+class="hidden mt-4
+       bg-orange-50
+       border border-orange-200
+       rounded-xl p-3 text-center">
+
+<span class="text-sm text-orange-700">
+El cliente ahorra
+</span>
+
+<strong
+id="resultadoAhorro"
+class="text-orange-800 ml-1">
+</strong>
+
+</div>
+
+
+
+<!-- WHATSAPP -->
+
+<button
+onclick="copiarCotizacion()"
+class="w-full mt-5
+       bg-slate-900
+       hover:bg-slate-800
+       text-white py-3.5
+       rounded-xl font-bold
+       transition">
+
+📋 COPIAR COTIZACIÓN PARA WHATSAPP
+
+</button>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PANEL LATERAL
+===================================================== -->
+
+<aside>
+
+<div
+class="bg-white rounded-3xl
+       soft-shadow border border-slate-200
+       p-6 xl:sticky xl:top-5">
+
+
+<div class="flex items-center gap-3 mb-6">
+
+<div
+class="w-10 h-10 rounded-xl
+       bg-green-100
+       flex items-center justify-center">
+
+📊
+
+</div>
+
+<div>
+
+<h2 class="font-extrabold">
+Parámetros actuales
+</h2>
+
+<p class="text-xs text-slate-400">
+Configuración de costos
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- COSTOS -->
+
+<div class="space-y-3 text-sm">
+
+
+<div class="flex justify-between">
+<span class="text-slate-500">
+Metro DTF
+</span>
+
+<strong id="infoMetroDtf"></strong>
+</div>
+
+
+<div class="flex justify-between">
+<span class="text-slate-500">
+Envío por pedido
+</span>
+
+<strong id="infoEnvio"></strong>
+</div>
+
+
+<div class="flex justify-between">
+<span class="text-slate-500">
+Energía mensual
+</span>
+
+<strong id="infoEnergia"></strong>
+</div>
+
+
+<div class="flex justify-between">
+<span class="text-slate-500">
+Producción mensual
+</span>
+
+<strong id="infoProduccion"></strong>
+</div>
+
+
+<div class="border-t pt-4 mt-4">
+
+<h3 class="font-bold mb-3">
+Precios de camisetas
+</h3>
+
+
+<div class="flex justify-between mb-2">
+
+<span class="text-slate-500">
+Algodón 1–5
+</span>
+
+<strong id="infoAlgodon"></strong>
+
+</div>
+
+
+<div
+class="flex justify-between mb-2
+       text-green-700">
+
+<span>
+Algodón 6+
+</span>
+
+<strong id="infoAlgodon6"></strong>
+
+</div>
+
+
+<div class="flex justify-between mb-2">
+
+<span class="text-slate-500">
+Piel 1–5
+</span>
+
+<strong id="infoPiel"></strong>
+
+</div>
+
+
+<div
+class="flex justify-between
+       text-green-700">
+
+<span>
+Piel 6+
+</span>
+
+<strong id="infoPiel6"></strong>
+
+</div>
+
+</div>
+
+
+
+<!-- DESCUENTOS -->
+
+<div class="border-t pt-4 mt-4">
+
+<h3 class="font-bold mb-3">
+Descuentos por cantidad
+</h3>
+
+
+<div class="flex justify-between mb-2">
+
+<span class="text-slate-500">
+10+ unidades
+</span>
+
+<strong
+id="infoDesc10"
+class="text-orange-600">
+</strong>
+
+</div>
+
+
+<div class="flex justify-between mb-2">
+
+<span class="text-slate-500">
+20+ unidades
+</span>
+
+<strong
+id="infoDesc20"
+class="text-orange-600">
+</strong>
+
+</div>
+
+
+<div class="flex justify-between">
+
+<span class="text-slate-500">
+50+ unidades
+</span>
+
+<strong
+id="infoDesc50"
+class="text-orange-600">
+</strong>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="mt-6 bg-green-50
+       border border-green-100
+       rounded-xl p-4">
+
+<div class="text-xs text-green-700
+            font-bold uppercase">
+
+Regla especial
+
+</div>
+
+<p class="text-sm text-green-800 mt-1">
+
+Desde <strong>6 camisetas</strong>,
+se activa automáticamente
+el precio especial.
+
+</p>
+
+</div>
+
+
+</div>
+
+</aside>
+
+</div>
+
+</main>
+
+
+
+<!-- =====================================================
+     CONFIGURACIÓN
+===================================================== -->
+
+<div
+id="configuracion"
+class="hidden fixed inset-0
+       bg-slate-950/60 z-50
+       overflow-y-auto p-4">
+
+<div
+class="max-w-xl mx-auto
+       bg-white rounded-3xl
+       shadow-2xl mt-5 mb-5
+       overflow-hidden">
+
+
+<div
+class="bg-green-700 text-white
+       px-6 py-5">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<h2 class="text-xl font-extrabold">
+Configuración
+</h2>
+
+<p class="text-green-100 text-sm">
+Modifica los costos de Waldy Uniformes
+</p>
+
+</div>
+
+
+<button
+onclick="cerrarConfiguracion()"
+class="text-2xl text-green-200
+       hover:text-white">
+
+×
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="p-6">
+
+
+<h3 class="font-bold text-green-700 mb-4">
+Costos DTF
+</h3>
+
+
+<label class="block text-sm font-semibold mb-1">
+Precio por metro DTF
+</label>
+
+<input
+id="configMetro"
+type="number"
+class="w-full p-3 border rounded-xl mb-4">
+
+
+<label class="block text-sm font-semibold mb-1">
+Envío por pedido
+</label>
+
+<input
+id="configEnvio"
+type="number"
+class="w-full p-3 border rounded-xl mb-5">
+
+
+<h3 class="font-bold text-green-700 mb-4">
+Energía
+</h3>
+
+
+<label class="block text-sm font-semibold mb-1">
+Recibo mensual
+</label>
+
+<input
+id="configEnergia"
+type="number"
+class="w-full p-3 border rounded-xl mb-4">
+
+
+<label class="block text-sm font-semibold mb-1">
+Metros DTF estimados por mes
+</label>
+
+<input
+id="configProduccion"
+type="number"
+step=".1"
+class="w-full p-3 border rounded-xl mb-5">
+
+
+<h3 class="font-bold text-green-700 mb-4">
+Camisetas
+</h3>
+
+
+<label class="block text-sm font-semibold mb-1">
+Algodón 1–5 unidades
+</label>
+
+<input
+id="configAlgodon"
+type="number"
+class="w-full p-3 border rounded-xl mb-4">
+
+
+<label class="block text-sm font-semibold mb-1">
+Algodón desde 6 unidades
+</label>
+
+<input
+id="configAlgodon6"
+type="number"
+class="w-full p-3 border rounded-xl mb-4">
+
+
+<label class="block text-sm font-semibold mb-1">
+Piel de durazno 1–5 unidades
+</label>
+
+<input
+id="configPiel"
+type="number"
+class="w-full p-3 border rounded-xl mb-4">
+
+
+<label class="block text-sm font-semibold mb-1">
+Piel de durazno desde 6 unidades
+</label>
+
+<input
+id="configPiel6"
+type="number"
+class="w-full p-3 border rounded-xl mb-5">
+
+
+<h3 class="font-bold text-green-700 mb-4">
+Margen de ganancia
+</h3>
+
+
+<input
+id="configMargen"
+type="number"
+class="w-full p-3 border rounded-xl mb-5">
+
+
+<h3 class="font-bold text-green-700 mb-4">
+Descuentos por cantidad
+</h3>
+
+
+<div class="grid grid-cols-3 gap-3">
+
+<div>
+
+<label class="text-xs font-bold">
+10+
+</label>
+
+<input
+id="configDesc10"
+type="number"
+class="w-full p-3 border rounded-xl">
+
+</div>
+
+
+<div>
+
+<label class="text-xs font-bold">
+20+
+</label>
+
+<input
+id="configDesc20"
+type="number"
+class="w-full p-3 border rounded-xl">
+
+</div>
+
+
+<div>
+
+<label class="text-xs font-bold">
+50+
+</label>
+
+<input
+id="configDesc50"
+type="number"
+class="w-full p-3 border rounded-xl">
+
+</div>
+
+</div>
+
+
+<div class="flex gap-3 mt-7">
+
+<button
+onclick="guardarConfiguracion()"
+class="flex-1 orange-gradient
+       text-white py-3 rounded-xl
+       font-bold">
+
+Guardar cambios
+
+</button>
+
+
+<button
+onclick="restaurarConfiguracion()"
+class="px-4 bg-slate-100
+       rounded-xl font-semibold">
+
+Restaurar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+const configuracionInicial = {
+
+    metroDtf: 26000,
+
+    envio: 12500,
+
+    energiaMensual: 65000,
+
+    produccionMensual: 30,
+
+    algodon: 25000,
+
+    algodon6: 15000,
+
+    piel: 20000,
+
+    piel6: 12000,
+
+    margen: 100,
+
+    descuento10: 5,
+
+    descuento20: 10,
+
+    descuento50: 15
+
+};
+
+
+let config =
+JSON.parse(
+localStorage.getItem("waldyConfig")
+) || {...configuracionInicial};
+
+
+
+/* =====================================================
+   MONEDA
+===================================================== */
+
+function dinero(valor) {
+
+return "$" +
+Math.round(valor)
+.toLocaleString("es-CO") +
+" COP";
+
+}
+
+
+
+/* =====================================================
+   PANEL
+===================================================== */
+
+function actualizarPanel() {
+
+document.getElementById("infoMetroDtf")
+.innerText = dinero(config.metroDtf);
+
+document.getElementById("infoEnvio")
+.innerText = dinero(config.envio);
+
+document.getElementById("infoEnergia")
+.innerText = dinero(config.energiaMensual);
+
+document.getElementById("infoProduccion")
+.innerText =
+config.produccionMensual + " m";
+
+document.getElementById("infoAlgodon")
+.innerText = dinero(config.algodon);
+
+document.getElementById("infoAlgodon6")
+.innerText = dinero(config.algodon6);
+
+document.getElementById("infoPiel")
+.innerText = dinero(config.piel);
+
+document.getElementById("infoPiel6")
+.innerText = dinero(config.piel6);
+
+document.getElementById("infoDesc10")
+.innerText =
+config.descuento10 + "%";
+
+document.getElementById("infoDesc20")
+.innerText =
+config.descuento20 + "%";
+
+document.getElementById("infoDesc50")
+.innerText =
+config.descuento50 + "%";
+
+}
+
+
+
+/* =====================================================
+   INTERFAZ
+===================================================== */
+
+function actualizarInterfaz() {
+
+const area =
+document.getElementById("areaDtf").value;
+
+
+const personalizado =
+document.getElementById(
+"personalizadoContainer"
+);
+
+
+if(area === "personalizado") {
+
+personalizado.classList.remove("hidden");
+
+} else {
+
+personalizado.classList.add("hidden");
+
+}
+
+
+/* CAMISETA */
+
+const tipo =
+document.getElementById("tipoProducto").value;
+
+const cantidad =
+Number(
+document.getElementById("cantidad").value
+) || 1;
+
+
+const aviso =
+document.getElementById("avisoCamiseta");
+
+const texto =
+document.getElementById("textoCamiseta");
+
+
+if(tipo === "algodon") {
+
+aviso.classList.remove("hidden");
+
+if(cantidad >= 6) {
+
+texto.innerHTML =
+`Desde <strong>6 unidades</strong>,
+la camiseta de algodón tiene un
+precio especial de
+<strong>${dinero(config.algodon6)}</strong>
+por unidad.`;
+
+} else {
+
+texto.innerHTML =
+`De 1 a 5 unidades,
+el precio de la camiseta de algodón
+es <strong>${dinero(config.algodon)}</strong>
+por unidad.`;
+
+}
+
+}
+
+
+else if(tipo === "piel") {
+
+aviso.classList.remove("hidden");
+
+if(cantidad >= 6) {
+
+texto.innerHTML =
+`Desde <strong>6 unidades</strong>,
+la camiseta piel de durazno tiene un
+precio especial de
+<strong>${dinero(config.piel6)}</strong>
+por unidad.`;
+
+} else {
+
+texto.innerHTML =
+`De 1 a 5 unidades,
+el precio de la camiseta piel de durazno
+es <strong>${dinero(config.piel)}</strong>
+por unidad.`;
+
+}
+
+}
+
+
+else {
+
+aviso.classList.add("hidden");
+
+}
+
+}
+
+
+
+/* =====================================================
+   AREA
+===================================================== */
+
+function obtenerArea() {
+
+const area =
+document.getElementById("areaDtf").value;
+
+
+if(area === "10x10") {
+
+return {
+ancho:10,
+alto:10,
+nombre:"10 × 10 cm"
+};
+
+}
+
+
+if(area === "mediaCarta") {
+
+return {
+ancho:21.5,
+alto:14,
+nombre:"Media carta"
+};
+
+}
+
+
+if(area === "carta") {
+
+return {
+ancho:21.5,
+alto:28,
+nombre:"Carta"
+};
+
+}
+
+
+if(area === "full") {
+
+return {
+ancho:56,
+alto:32,
+nombre:"Full / Pecho completo"
+};
+
+}
+
+
+if(area === "personalizado") {
+
+const ancho =
+Number(
+document.getElementById(
+"anchoPersonalizado"
+).value
+);
+
+const alto =
+Number(
+document.getElementById(
+"altoPersonalizado"
+).value
+);
+
+
+return {
+ancho,
+alto,
+nombre:
+ancho + " × " + alto + " cm"
+};
+
+}
+
+}
+
+
+
+/* =====================================================
+   METROS DTF
+===================================================== */
+
+function calcularMetrosNecesarios(
+ancho,
+alto,
+cantidad
+) {
+
+const anchoMetro = 56;
+const largoMetro = 100;
+
+
+function piezasPorMetro(w,h) {
+
+const horizontal =
+Math.floor(anchoMetro / w) *
+Math.floor(largoMetro / h);
+
+const vertical =
+Math.floor(anchoMetro / h) *
+Math.floor(largoMetro / w);
+
+return Math.max(
+horizontal,
+vertical,
+1
+);
+
+}
+
+
+const piezas =
+piezasPorMetro(
+ancho,
+alto
+);
+
+
+return {
+
+piezasMetro:piezas,
+
+metros:
+cantidad / piezas
+
+};
+
+}
+
+
+
+/* =====================================================
+   DESCUENTO
+===================================================== */
+
+function obtenerDescuento(cantidad) {
+
+if(cantidad >= 50)
+return config.descuento50;
+
+if(cantidad >= 20)
+return config.descuento20;
+
+if(cantidad >= 10)
+return config.descuento10;
+
+return 0;
+
+}
+
+
+
+/* =====================================================
+   CALCULAR
+===================================================== */
+
+function calcularCotizacion() {
+
+const tipo =
+document.getElementById(
+"tipoProducto"
+).value;
+
+
+const cantidad =
+Math.max(
+1,
+Number(
+document.getElementById(
+"cantidad"
+).value
+)
+);
+
+
+const metrosPedido =
+Math.max(
+.1,
+Number(
+document.getElementById(
+"metrosPedido"
+).value
+)
+);
+
+
+const area =
+obtenerArea();
+
+
+if(
+!area ||
+area.ancho <= 0 ||
+area.alto <= 0
+) {
+
+alert(
+"Ingresa un tamaño válido."
+);
+
+return;
+
+}
+
+
+/* DTF */
+
+const consumo =
+calcularMetrosNecesarios(
+area.ancho,
+area.alto,
+cantidad
+);
+
+
+const metrosNecesarios =
+consumo.metros;
+
+
+const costoDtf =
+metrosNecesarios *
+config.metroDtf;
+
+
+/* ENVÍO */
+
+const envioPorMetro =
+config.envio /
+metrosPedido;
+
+
+const envio =
+metrosNecesarios *
+envioPorMetro;
+
+
+/* ENERGÍA */
+
+const energiaPorMetro =
+config.energiaMensual /
+config.produccionMensual;
+
+
+const energia =
+metrosNecesarios *
+energiaPorMetro;
+
+
+/* CAMISETA */
+
+let camiseta = 0;
+
+
+if(tipo === "algodon") {
+
+camiseta =
+cantidad >= 6
+? config.algodon6
+: config.algodon;
+
+}
+
+
+if(tipo === "piel") {
+
+camiseta =
+cantidad >= 6
+? config.piel6
+: config.piel;
+
+}
+
+
+/* COSTO */
+
+const costoPedido =
+
+costoDtf +
+envio +
+energia +
+(camiseta * cantidad);
+
+
+const costoUnitario =
+costoPedido /
+cantidad;
+
+
+/* MARGEN */
+
+const precioAntes =
+costoUnitario *
+(
+1 +
+config.margen / 100
+);
+
+
+/* DESCUENTO */
+
+const descuento =
+obtenerDescuento(cantidad);
+
+
+const precioFinal =
+precioAntes *
+(
+1 -
+descuento / 100
+);
+
+
+const total =
+precioFinal *
+cantidad;
+
+
+const ahorro =
+(precioAntes * cantidad)
+-
+total;
+
+
+/* RESULTADO */
+
+const resultado =
+document.getElementById("resultado");
+
+resultado.classList.remove("hidden");
+
+
+const nombres = {
+
+dtf:"Solo estampado DTF",
+
+algodon:
+"Camiseta algodón + DTF",
+
+piel:
+"Camiseta piel de durazno + DTF"
+
+};
+
+
+document.getElementById(
+"resultadoProducto"
+).innerText =
+nombres[tipo];
+
+
+document.getElementById(
+"resultadoCantidad"
+).innerText =
+cantidad + " unidades";
+
+
+document.getElementById(
+"resultadoMetros"
+).innerText =
+metrosNecesarios.toFixed(2) + " m";
+
+
+document.getElementById(
+"resultadoCostoDtf"
+).innerText =
+dinero(costoDtf);
+
+
+document.getElementById(
+"resultadoEnvio"
+).innerText =
+dinero(envio);
+
+
+document.getElementById(
+"resultadoEnergia"
+).innerText =
+dinero(energia);
+
+
+const fila =
+document.getElementById(
+"filaCamiseta"
+);
+
+
+if(tipo === "dtf") {
+
+fila.classList.add("hidden");
+
+} else {
+
+fila.classList.remove("hidden");
+
+document.getElementById(
+"resultadoCamiseta"
+).innerText =
+dinero(camiseta);
+
+}
+
+
+document.getElementById(
+"resultadoCostoUnitario"
+).innerText =
+dinero(costoUnitario);
+
+
+document.getElementById(
+"resultadoPrecioAntes"
+).innerText =
+dinero(precioAntes);
+
+
+document.getElementById(
+"resultadoDescuento"
+).innerText =
+descuento + "%";
+
+
+document.getElementById(
+"resultadoDescuentoTexto"
+).innerText =
+descuento > 0
+? "Descuento aplicado por cantidad."
+: "No aplica descuento.";
+
+
+document.getElementById(
+"resultadoTotal"
+).innerText =
+dinero(total);
+
+
+const ahorroBox =
+document.getElementById(
+"ahorroContainer"
+);
+
+
+if(ahorro > 0) {
+
+ahorroBox.classList.remove(
+"hidden"
+);
+
+document.getElementById(
+"resultadoAhorro"
+).innerText =
+dinero(ahorro);
+
+} else {
+
+ahorroBox.classList.add(
+"hidden"
+);
+
+}
+
+
+/* DATOS PARA WHATSAPP */
+
+window.ultimaCotizacion = {
+
+producto:nombres[tipo],
+
+area:area.nombre,
+
+cantidad,
+
+metros:metrosNecesarios,
+
+precioUnitario:precioFinal,
+
+descuento,
+
+total
+
+};
+
+
+resultado.scrollIntoView({
+
+behavior:"smooth",
+
+block:"start"
+
+});
+
+}
+
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function copiarCotizacion() {
+
+if(!window.ultimaCotizacion) {
+
+alert(
+"Primero calcula una cotización."
+);
+
+return;
+
+}
+
+
+const c =
+window.ultimaCotizacion;
+
+
+const texto =
+`Hola 👋
+
+Te compartimos la cotización de Waldy Uniformes:
+
+👕 Producto: ${c.producto}
+📐 Estampado: ${c.area}
+📦 Cantidad: ${c.cantidad} unidades
+📏 DTF estimado: ${c.metros.toFixed(2)} m
+
+💰 Precio unitario: ${dinero(c.precioUnitario)}
+🏷️ Descuento: ${c.descuento}%
+
+💵 TOTAL: ${dinero(c.total)}
+
+¡Gracias por confiar en Waldy Uniformes!`;
+
+
+navigator.clipboard
+.writeText(texto)
+.then(() => {
+
+alert(
+"¡Cotización copiada! Ya puedes pegarla en WhatsApp."
+);
+
+});
+
+}
+
+
+
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+function mostrarConfiguracion() {
+
+document.getElementById(
+"configuracion"
+).classList.remove("hidden");
+
+
+document.getElementById(
+"configMetro"
+).value =
+config.metroDtf;
+
+
+document.getElementById(
+"configEnvio"
+).value =
+config.envio;
+
+
+document.getElementById(
+"configEnergia"
+).value =
+config.energiaMensual;
+
+
+document.getElementById(
+"configProduccion"
+).value =
+config.produccionMensual;
+
+
+document.getElementById(
+"configAlgodon"
+).value =
+config.algodon;
+
+
+document.getElementById(
+"configAlgodon6"
+).value =
+config.algodon6;
+
+
+document.getElementById(
+"configPiel"
+).value =
+config.piel;
+
+
+document.getElementById(
+"configPiel6"
+).value =
+config.piel6;
+
+
+document.getElementById(
+"configMargen"
+).value =
+config.margen;
+
+
+document.getElementById(
+"configDesc10"
+).value =
+config.descuento10;
+
+
+document.getElementById(
+"configDesc20"
+).value =
+config.descuento20;
+
+
+document.getElementById(
+"configDesc50"
+).value =
+config.descuento50;
+
+}
+
+
+
+function cerrarConfiguracion() {
+
+document.getElementById(
+"configuracion"
+).classList.add("hidden");
+
+}
+
+
+
+/* =====================================================
+   GUARDAR
+===================================================== */
+
+function guardarConfiguracion() {
+
+config = {
+
+metroDtf:
+Number(
+document.getElementById(
+"configMetro"
+).value
+),
+
+envio:
+Number(
+document.getElementById(
+"configEnvio"
+).value
+),
+
+energiaMensual:
+Number(
+document.getElementById(
+"configEnergia"
+).value
+),
+
+produccionMensual:
+Number(
+document.getElementById(
+"configProduccion"
+).value
+),
+
+algodon:
+Number(
+document.getElementById(
+"configAlgodon"
+).value
+),
+
+algodon6:
+Number(
+document.getElementById(
+"configAlgodon6"
+).value
+),
+
+piel:
+Number(
+document.getElementById(
+"configPiel"
+).value
+),
+
+piel6:
+Number(
+document.getElementById(
+"configPiel6"
+).value
+),
+
+margen:
+Number(
+document.getElementById(
+"configMargen"
+).value
+),
+
+descuento10:
+Number(
+document.getElementById(
+"configDesc10"
+).value
+),
+
+descuento20:
+Number(
+document.getElementById(
+"configDesc20"
+).value
+),
+
+descuento50:
+Number(
+document.getElementById(
+"configDesc50"
+).value
+)
+
+};
+
+
+localStorage.setItem(
+"waldyConfig",
+JSON.stringify(config)
+);
+
+
+actualizarPanel();
+
+actualizarInterfaz();
+
+cerrarConfiguracion();
+
+
+alert(
+"Configuración guardada correctamente."
+);
+
+}
+
+
+
+/* =====================================================
+   RESTAURAR
+===================================================== */
+
+function restaurarConfiguracion() {
+
+config =
+{...configuracionInicial};
+
+
+localStorage.setItem(
+"waldyConfig",
+JSON.stringify(config)
+);
+
+
+mostrarConfiguracion();
+
+actualizarPanel();
+
+actualizarInterfaz();
+
+}
+
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+actualizarPanel();
+
+actualizarInterfaz();
+
+</script>
+
+</body>
+</html>
